@@ -1,0 +1,32 @@
+Payer
+	playerId
+	nickname
+	gameId
+	
+Game
+	gameId
+	ruleType
+	status
+	backlogItem
+	startedAt
+	endedAt
+
+GameRules
+	ruleId
+	name
+	description
+
+BaclogItems
+	itemId
+	gameId
+	title
+	description
+	estimatedDifficulty
+	status
+
+Votes ( chaque joueur peut voter plusieurs fois pour une même tâche, sur des tours différents ) 
+	voteId
+	playerId
+	itemId
+	value
+	roundNumber
