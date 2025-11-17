@@ -1,19 +1,21 @@
-"""
-@file
-@brief Connexion à la base de donnée
-
-Fichier responsable a creer un object pour comuniquer avec la base de donnée
-"""
-
 <?php
 
-class Database {
-   """
-   @class Database
-   @brief
+/** 
+ *   @file
+ *   @brief Connexion à la base de donnée
+ *   
+ *   Fichier responsable a creer un object pour comuniquer avec la base de donnée
 
-   Class qui retourne une seul instance de connexion de base de donnée
-   """
+*/
+
+class Database {
+   /** 
+    *   @class Database
+    *   @brief Instance d'objet pdo
+    *   
+    *   Class qui retourne une seul instance de connexion de base de donnée
+
+    */
     
     private const DB_HOST = 'localhost';      
     private const DB_NAME = 'planningPoker'; 
