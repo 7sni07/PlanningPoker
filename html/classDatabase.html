@@ -90,20 +90,71 @@ Collaboration diagram for Database:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a764343ea3b46daad2deec6f8e0a39566" id="r_a764343ea3b46daad2deec6f8e0a39566"><td class="memItemLeft" align="right" valign="top"><a id="a764343ea3b46daad2deec6f8e0a39566" name="a764343ea3b46daad2deec6f8e0a39566"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>getPdo</b> ()</td></tr>
+<tr class="memitem:a764343ea3b46daad2deec6f8e0a39566" id="r_a764343ea3b46daad2deec6f8e0a39566"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a764343ea3b46daad2deec6f8e0a39566">getPdo</a> ()</td></tr>
+<tr class="memdesc:a764343ea3b46daad2deec6f8e0a39566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère l'objet PDO.  <br /></td></tr>
 <tr class="separator:a764343ea3b46daad2deec6f8e0a39566"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8399325825e893103c463e644f817f86" id="r_a8399325825e893103c463e644f817f86"><td class="memItemLeft" align="right" valign="top"><a id="a8399325825e893103c463e644f817f86" name="a8399325825e893103c463e644f817f86"></a>
-static&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
+<tr class="memitem:a8399325825e893103c463e644f817f86" id="r_a8399325825e893103c463e644f817f86"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a8399325825e893103c463e644f817f86">getInstance</a> ()</td></tr>
+<tr class="memdesc:a8399325825e893103c463e644f817f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère l'instance unique de la classe <a class="el" href="classDatabase.html" title="Instance d&#39;objet pdo.">Database</a>.  <br /></td></tr>
 <tr class="separator:a8399325825e893103c463e644f817f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Instance d'objet pdo. </p>
 <p>Class qui retourne une seul instance de connexion de base de donnée </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8399325825e893103c463e644f817f86" name="a8399325825e893103c463e644f817f86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8399325825e893103c463e644f817f86">&#9670;&#160;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Database::getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Récupère l'instance unique de la classe <a class="el" href="classDatabase.html" title="Instance d&#39;objet pdo.">Database</a>. </p>
+<p>Si l'instance n'existe pas encore, elle est créée. Sinon, l'instance existante est retournée.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classDatabase.html" title="Instance d&#39;objet pdo.">Database</a> L'instance unique de la classe. </dd></dl>
+
+</div>
+</div>
+<a id="a764343ea3b46daad2deec6f8e0a39566" name="a764343ea3b46daad2deec6f8e0a39566"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a764343ea3b46daad2deec6f8e0a39566">&#9670;&#160;</a></span>getPdo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Database::getPdo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Récupère l'objet PDO. </p>
+<p>Permet d'effectuer des requêtes SQL via l'objet PDO.</p>
+<dl class="section return"><dt>Returns</dt><dd>PDO L'objet de connexion PDO. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>models/<a class="el" href="Database_8php.html">Database.php</a></li>
 </ul>
 </div><!-- contents -->
