@@ -1,7 +1,7 @@
 <?php
 
 /** 
- *   @file
+ *   @file Database.php
  *   @brief Connexion à la base de donnée
  *   
  *   Fichier responsable a creer un object pour comuniquer avec la base de donnée
