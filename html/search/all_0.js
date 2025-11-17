@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['database_0',['Database',['../classDatabase.html',1,'']]],
-  ['database_2ephp_1',['Database.php',['../Database_8php.html',1,'']]]
+  ['_5f_5fconstruct_0',['__construct',['../classGame.html#a8612ea9fe3f3afb26581a6afa8b337d4',1,'Game']]]
 ];
