@@ -45,18 +45,20 @@ class Game {
      * @todo 
      *
      * @param int $ruleId L'identifiant de la règle de jeu choisie.
+     * @param string $pseudo L'identifiant du hôte de la partie.
      * * @return int L'identifiant unique (ID) de la partie créée.
      *
      */
-    public function createGame(int $ruleId): int {
+    public function createGame(int $ruleId, string $pseudo): int {
         
-        $sql = "INSERT INTO game (rule_id, status, started_at) 
-                VALUES (:rule_id, 'LOBBY', NOW())";
+        $sql = "INSERT INTO game (rule_id, status, started_at, invite_id) 
+                VALUES (:rule_id, 'LOBBY', NOW(), :invite_id)";
         
         $stmt = $this->pdo->prepare($sql);
         
         
         $stmt->bindParam(':rule_id', $ruleId, PDO::PARAM_INT);
+        $stmt->bindParam(':invite_id', uniqid($pseudo), PDO::PARAM_STR);
         $stmt->execute();
         
         
@@ -104,7 +106,7 @@ class Game {
         
         $sqlGame = "
             SELECT 
-                g.game_id, g.status AS game_status, g.started_at, g.ended_at,
+                g.game_id, g.status AS game_status, g.started_at, g.ended_at, g.invite_id,
                 r.name AS rule_name, r.description AS rule_description
             FROM 
                 game g JOIN rule r

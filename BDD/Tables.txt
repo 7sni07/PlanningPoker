@@ -30,3 +30,4 @@ Votes ( chaque joueur peut voter plusieurs fois pour une même tâche, sur des t
 	itemId
 	value
 	roundNumber
+

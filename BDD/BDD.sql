@@ -8,6 +8,7 @@ CREATE TABLE game(
     game_id INT PRIMARY KEY AUTO_INCREMENT,
     rule_id INT NOT NULL,
     status VARCHAR(50),
+    invite_id VARCHAR(100) NOT NULL,
     started_at DATETIME,
     ended_at DATETIME NULL,
     current_item_id INT NULL,
