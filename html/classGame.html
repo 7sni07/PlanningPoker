@@ -92,9 +92,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8612ea9fe3f3afb26581a6afa8b337d4" id="r_a8612ea9fe3f3afb26581a6afa8b337d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a8612ea9fe3f3afb26581a6afa8b337d4">__construct</a> ()</td></tr>
 <tr class="memdesc:a8612ea9fe3f3afb26581a6afa8b337d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de la classe <a class="el" href="classGame.html" title="Manipulation des données dans la base de donnée.">Game</a>.  <br /></td></tr>
 <tr class="separator:a8612ea9fe3f3afb26581a6afa8b337d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac39ebf78457b6b2c1c8bd06582a94ab" id="r_aac39ebf78457b6b2c1c8bd06582a94ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#aac39ebf78457b6b2c1c8bd06582a94ab">createGame</a> (int $ruleId)</td></tr>
-<tr class="memdesc:aac39ebf78457b6b2c1c8bd06582a94ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée une nouvelle partie en base de données.  <br /></td></tr>
-<tr class="separator:aac39ebf78457b6b2c1c8bd06582a94ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa15f8414a3840928edb20b58f7a4a962" id="r_aa15f8414a3840928edb20b58f7a4a962"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#aa15f8414a3840928edb20b58f7a4a962">createGame</a> (int $ruleId, string $pseudo)</td></tr>
+<tr class="memdesc:aa15f8414a3840928edb20b58f7a4a962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée une nouvelle partie en base de données.  <br /></td></tr>
+<tr class="separator:aa15f8414a3840928edb20b58f7a4a962"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a930ce861ff251a89c85543719f6a2e" id="r_a7a930ce861ff251a89c85543719f6a2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a7a930ce861ff251a89c85543719f6a2e">createPlayer</a> (string $pseudo, int $gameId)</td></tr>
 <tr class="memdesc:a7a930ce861ff251a89c85543719f6a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un joueur à une partie existante.  <br /></td></tr>
 <tr class="separator:a7a930ce861ff251a89c85543719f6a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,8 +139,8 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aac39ebf78457b6b2c1c8bd06582a94ab" name="aac39ebf78457b6b2c1c8bd06582a94ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac39ebf78457b6b2c1c8bd06582a94ab">&#9670;&#160;</a></span>createGame()</h2>
+<a id="aa15f8414a3840928edb20b58f7a4a962" name="aa15f8414a3840928edb20b58f7a4a962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa15f8414a3840928edb20b58f7a4a962">&#9670;&#160;</a></span>createGame()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,8 +149,18 @@ Here is the call graph for this function:</div>
           <td class="memname">Game::createGame </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>$ruleId</em></td><td>)</td>
+          <td class="paramname"><em>$ruleId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$pseudo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -159,7 +169,8 @@ Here is the call graph for this function:</div>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramtype">int</td><td class="paramname">$ruleId</td><td>L'identifiant de la règle de jeu choisie.<ul>
+    <tr><td class="paramtype">int</td><td class="paramname">$ruleId</td><td>L'identifiant de la règle de jeu choisie. </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$pseudo</td><td>L'identifiant du hôte de la partie.<ul>
 <li></li>
 </ul>
 </td></tr>
