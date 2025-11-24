@@ -12,6 +12,7 @@ CREATE TABLE game(
     started_at DATETIME,
     ended_at DATETIME NULL,
     current_item_id INT NULL,
+    nb_invited_players INT NOT NULL,
     FOREIGN KEY (rule_id) REFERENCES rules(rule_id)
 );
 
@@ -19,6 +20,7 @@ CREATE TABLE player(
     player_id INT PRIMARY KEY AUTO_INCREMENT,
     pseudo VARCHAR(50) NOT NULL,
     game_id INT NOT NULL,
+    is_host BOOLEAN NOT NULL,
     FOREIGN KEY (game_id) REFERENCES games(game_id)
 );
 
@@ -42,3 +44,9 @@ CREATE TABLE vote (
     FOREIGN KEY (player_id) REFERENCES players(player_id),
     FOREIGN KEY (item_id) REFERENCES backlog_items(item_id)
 );
+
+INSERT INTO rule (name) VALUES('Mode Strict (Unanimité)');
+INSERT INTO rule (name) VALUES('Moyenne');
+INSERT INTO rule (name) VALUES('Médiane');
+INSERT INTO rule (name) VALUES('Majorité absolue');
+INSERT INTO rule (name) VALUES('Majorité relative');
