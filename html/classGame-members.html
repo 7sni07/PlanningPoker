@@ -76,9 +76,15 @@ $(function() {
 <p>This is the complete list of members for <a class="el" href="classGame.html">Game</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classGame.html#a8612ea9fe3f3afb26581a6afa8b337d4">__construct</a>()</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classGame.html#aa15f8414a3840928edb20b58f7a4a962">createGame</a>(int $ruleId, string $pseudo)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classGame.html#a7a930ce861ff251a89c85543719f6a2e">createPlayer</a>(string $pseudo, int $gameId)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classGame.html#ad82147c371258ab1a4acdca9210f3341">addBacklogItems</a>(int $gameId, array $BacklogItems)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classGame.html#ae93008722262fd9afd16515c917957db">createGame</a>(int $ruleId, string $pseudo, int $nbInvitedPlayers)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classGame.html#a9e4e37ed756ae2699eb50b9ed114a6ad">createPlayer</a>(string $pseudo, int $gameId, bool $is_host)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classGame.html#a7e593761c88de15ccda73d260080254b">getBacklogItems</a>(int $gameId)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="classGame.html#a6e40688e8728d29da2364fadba9602d0">getGameInfo</a>(int $gameId)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getPlayerInfo</b>(int $playerID) (defined in <a class="el" href="classGame.html">Game</a>)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>getPlayerInGame</b>(string $playerPseudo, string $gameInviteId) (defined in <a class="el" href="classGame.html">Game</a>)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getRules</b>() (defined in <a class="el" href="classGame.html">Game</a>)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>invitePlayers</b>(array $pseudos, int $gameId) (defined in <a class="el" href="classGame.html">Game</a>)</td><td class="entry"><a class="el" href="classGame.html">Game</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

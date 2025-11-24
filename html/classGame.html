@@ -83,7 +83,7 @@ Collaboration diagram for Game:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGame__coll__graph.png" border="0" usemap="#aGame_coll__map" alt="Collaboration graph"/></div>
 <map name="aGame_coll__map" id="aGame_coll__map">
-<area shape="rect" title="Manipulation des données dans la base de donnée." alt="" coords="5,5,129,131"/>
+<area shape="rect" title="Manipulation des données dans la base de donnée." alt="" coords="5,5,157,251"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -92,15 +92,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8612ea9fe3f3afb26581a6afa8b337d4" id="r_a8612ea9fe3f3afb26581a6afa8b337d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a8612ea9fe3f3afb26581a6afa8b337d4">__construct</a> ()</td></tr>
 <tr class="memdesc:a8612ea9fe3f3afb26581a6afa8b337d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de la classe <a class="el" href="classGame.html" title="Manipulation des données dans la base de donnée.">Game</a>.  <br /></td></tr>
 <tr class="separator:a8612ea9fe3f3afb26581a6afa8b337d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa15f8414a3840928edb20b58f7a4a962" id="r_aa15f8414a3840928edb20b58f7a4a962"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#aa15f8414a3840928edb20b58f7a4a962">createGame</a> (int $ruleId, string $pseudo)</td></tr>
-<tr class="memdesc:aa15f8414a3840928edb20b58f7a4a962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée une nouvelle partie en base de données.  <br /></td></tr>
-<tr class="separator:aa15f8414a3840928edb20b58f7a4a962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a930ce861ff251a89c85543719f6a2e" id="r_a7a930ce861ff251a89c85543719f6a2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a7a930ce861ff251a89c85543719f6a2e">createPlayer</a> (string $pseudo, int $gameId)</td></tr>
-<tr class="memdesc:a7a930ce861ff251a89c85543719f6a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un joueur à une partie existante.  <br /></td></tr>
-<tr class="separator:a7a930ce861ff251a89c85543719f6a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae93008722262fd9afd16515c917957db" id="r_ae93008722262fd9afd16515c917957db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ae93008722262fd9afd16515c917957db">createGame</a> (int $ruleId, string $pseudo, int $nbInvitedPlayers)</td></tr>
+<tr class="memdesc:ae93008722262fd9afd16515c917957db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée une nouvelle partie en base de données.  <br /></td></tr>
+<tr class="separator:ae93008722262fd9afd16515c917957db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e4e37ed756ae2699eb50b9ed114a6ad" id="r_a9e4e37ed756ae2699eb50b9ed114a6ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a9e4e37ed756ae2699eb50b9ed114a6ad">createPlayer</a> (string $pseudo, int $gameId, bool $is_host)</td></tr>
+<tr class="memdesc:a9e4e37ed756ae2699eb50b9ed114a6ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un joueur à une partie existante.  <br /></td></tr>
+<tr class="separator:a9e4e37ed756ae2699eb50b9ed114a6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9946780ba25475cf0bca95b2d6572aaa" id="r_a9946780ba25475cf0bca95b2d6572aaa"><td class="memItemLeft" align="right" valign="top"><a id="a9946780ba25475cf0bca95b2d6572aaa" name="a9946780ba25475cf0bca95b2d6572aaa"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>invitePlayers</b> (array $pseudos, int $gameId)</td></tr>
+<tr class="separator:a9946780ba25475cf0bca95b2d6572aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e40688e8728d29da2364fadba9602d0" id="r_a6e40688e8728d29da2364fadba9602d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a6e40688e8728d29da2364fadba9602d0">getGameInfo</a> (int $gameId)</td></tr>
 <tr class="memdesc:a6e40688e8728d29da2364fadba9602d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère les informations d'une partie.  <br /></td></tr>
 <tr class="separator:a6e40688e8728d29da2364fadba9602d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf25869be0f29e26da6b17ff8a10ab9e" id="r_aaf25869be0f29e26da6b17ff8a10ab9e"><td class="memItemLeft" align="right" valign="top"><a id="aaf25869be0f29e26da6b17ff8a10ab9e" name="aaf25869be0f29e26da6b17ff8a10ab9e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayerInfo</b> (int $playerID)</td></tr>
+<tr class="separator:aaf25869be0f29e26da6b17ff8a10ab9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac61c64469e5977d4b2f4d5b5cdc4d3e3" id="r_ac61c64469e5977d4b2f4d5b5cdc4d3e3"><td class="memItemLeft" align="right" valign="top"><a id="ac61c64469e5977d4b2f4d5b5cdc4d3e3" name="ac61c64469e5977d4b2f4d5b5cdc4d3e3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>getRules</b> ()</td></tr>
+<tr class="separator:ac61c64469e5977d4b2f4d5b5cdc4d3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae5c250814089739701016f2aa7394c" id="r_a1ae5c250814089739701016f2aa7394c"><td class="memItemLeft" align="right" valign="top"><a id="a1ae5c250814089739701016f2aa7394c" name="a1ae5c250814089739701016f2aa7394c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayerInGame</b> (string $playerPseudo, string $gameInviteId)</td></tr>
+<tr class="separator:a1ae5c250814089739701016f2aa7394c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad82147c371258ab1a4acdca9210f3341" id="r_ad82147c371258ab1a4acdca9210f3341"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ad82147c371258ab1a4acdca9210f3341">addBacklogItems</a> (int $gameId, array $BacklogItems)</td></tr>
+<tr class="memdesc:ad82147c371258ab1a4acdca9210f3341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Importe une liste de fonctionnalités (backlog) dans la BDD.  <br /></td></tr>
+<tr class="separator:ad82147c371258ab1a4acdca9210f3341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e593761c88de15ccda73d260080254b" id="r_a7e593761c88de15ccda73d260080254b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a7e593761c88de15ccda73d260080254b">getBacklogItems</a> (int $gameId)</td></tr>
+<tr class="memdesc:a7e593761c88de15ccda73d260080254b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère les items du backlog.  <br /></td></tr>
+<tr class="separator:a7e593761c88de15ccda73d260080254b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manipulation des données dans la base de donnée. </p>
@@ -139,8 +157,45 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa15f8414a3840928edb20b58f7a4a962" name="aa15f8414a3840928edb20b58f7a4a962"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa15f8414a3840928edb20b58f7a4a962">&#9670;&#160;</a></span>createGame()</h2>
+<a id="ad82147c371258ab1a4acdca9210f3341" name="ad82147c371258ab1a4acdca9210f3341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad82147c371258ab1a4acdca9210f3341">&#9670;&#160;</a></span>addBacklogItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::addBacklogItems </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$gameId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">array&#160;</td>
+          <td class="paramname"><em>$BacklogItems</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Importe une liste de fonctionnalités (backlog) dans la BDD. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$gameId</td><td>L'ID de la partie. </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$items</td><td>Tableau associatif décodé du JSON. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae93008722262fd9afd16515c917957db" name="ae93008722262fd9afd16515c917957db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae93008722262fd9afd16515c917957db">&#9670;&#160;</a></span>createGame()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +210,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>$pseudo</em>&#160;</td>
+          <td class="paramname"><em>$pseudo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$nbInvitedPlayers</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -181,8 +242,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a7a930ce861ff251a89c85543719f6a2e" name="a7a930ce861ff251a89c85543719f6a2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a930ce861ff251a89c85543719f6a2e">&#9670;&#160;</a></span>createPlayer()</h2>
+<a id="a9e4e37ed756ae2699eb50b9ed114a6ad" name="a9e4e37ed756ae2699eb50b9ed114a6ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e4e37ed756ae2699eb50b9ed114a6ad">&#9670;&#160;</a></span>createPlayer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +258,13 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>$gameId</em>&#160;</td>
+          <td class="paramname"><em>$gameId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>$is_host</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -219,6 +286,33 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int L'identifiant unique (ID) du joueur créé. </dd></dl>
+
+</div>
+</div>
+<a id="a7e593761c88de15ccda73d260080254b" name="a7e593761c88de15ccda73d260080254b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e593761c88de15ccda73d260080254b">&#9670;&#160;</a></span>getBacklogItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::getBacklogItems </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$gameId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Récupère les items du backlog. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$gameId</td><td>L'ID de la partie. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>array Liste des items. </dd></dl>
 
 </div>
 </div>
