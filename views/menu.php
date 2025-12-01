@@ -23,7 +23,7 @@
             <label for="pseudo">Votre Pseudo (Hôte) :</label>
             <input type="text" id="pseudo" name="pseudo" required>
             
-            <label for="num_players">Nombre de joueurs :</label>
+            <label for="num_players">Nombre de joueurs invité:</label>
             <input type="number" id="num_players" name="num_players" min="2" value="2" required>
             
             <label for="rule_id">Règles de Validation :</label>
@@ -51,7 +51,7 @@
             <label for="pseudo">Votre Pseudo :</label>
             <input type="text" id="pseudo" name="pseudo" required>
             
-            <label for="num_players">ID de la Partie :</label>
+            <label for="gameID">ID de la Partie :</label>
             <input type="text" id="gameID" name="gameID" required>
             
             <button type="submit">Rejoindre la Partie</button>

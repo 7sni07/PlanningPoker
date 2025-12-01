@@ -56,7 +56,7 @@
                 <?php endforeach; ?>
             </ul>
             
-            <?php if(count($gameData['players']) - ($gameData['nb_invited_players']) != 0):?>
+            <?php if(count($gameData['players'])- ($gameData['nb_invited_players'] + 1)!= 0):?>
 
             <p>Inviter les autres participants...</p>
 
@@ -64,7 +64,7 @@
 
                 <form action="index.php?action=invite_player" method="POST">
 
-                <?php for($i=0; $i<$gameData['nb_invited_players'] - count($gameData['players']) ; $i++): ?>
+                <?php for($i=0; $i<$gameData['nb_invited_players']; $i++): ?>
 
                     <li>
 
@@ -125,7 +125,6 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <p style="color: green;">✅ <?php echo count($gameData['backlog_items']); ?> tâches chargées.</p>
             <?php else: ?>
                 <p style="font-style: italic; color: #666;">Aucune tâche importée pour le moment.</p>
             <?php endif; ?>

@@ -169,11 +169,11 @@ class Game {
     public function getPlayerInfo(int $playerID): ?array {
         
         $sqlPlayer = "
-            SELECT 
+            SELECT
                 player_id, pseudo, game_id, is_host
-            FROM 
+            FROM
                 player
-            WHERE 
+            WHERE
                 player_id = :player_id
         ";
 
@@ -278,6 +278,25 @@ class Game {
         $stmtgetBacklogItems->execute();
         
         return $stmtgetBacklogItems->fetchAll();
+    }
+
+    /**
+     * @brief Supprimer le Backlog d'une partie
+     * @param int $gameId L'ID de la partie.
+     * @return void.
+     */
+    public function dropBacklogItems(int $gameId) {
+        $sqldropBacklogItems = "
+                DELETE  
+                FROM 
+                    backlog_item 
+                WHERE 
+                    game_id = :game_id";
+        
+        $stmtdropBacklogItems = $this->pdo->prepare($sqldropBacklogItems);
+        $stmtdropBacklogItems->bindParam(':game_id', $gameId, PDO::PARAM_INT);
+        $stmtdropBacklogItems->execute();
+    
     }
 
 

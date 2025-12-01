@@ -200,6 +200,9 @@ class GameController {
             }
 
             $gameData = $this->gameModel->getGameInfo($playerInGame['game_id']);
+            $backlogItems = $this->gameModel->getBacklogItems($gameData['game_id']);
+
+            $gameData['backlog_items'] = $backlogItems;
 
             if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -207,7 +210,7 @@ class GameController {
 
             $game_id = (int)($playerInGame['game_id']);
             $player_id = $playerInGame['player_id'];
-            $is_host = false;
+            $is_host = $playerInGame['is_host'];
             
             $_SESSION['player_id'] = $player_id;
             $_SESSION['game_id'] = $game_id;
@@ -251,6 +254,7 @@ class GameController {
             if (json_last_error() === JSON_ERROR_NONE && is_array($items)) {
                 try {
                     
+                    $this->gameModel->dropBacklogItems($game_id);
                     $this->gameModel->addBacklogItems($game_id, $items);
 
                     header("Location: index.php?action=lobby&success=backlog_imported");
