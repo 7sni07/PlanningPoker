@@ -83,7 +83,7 @@ Collaboration diagram for Game:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGame__coll__graph.png" border="0" usemap="#aGame_coll__map" alt="Collaboration graph"/></div>
 <map name="aGame_coll__map" id="aGame_coll__map">
-<area shape="rect" title="Manipulation des données dans la base de donnée." alt="" coords="5,5,157,251"/>
+<area shape="rect" title="Manipulation des données dans la base de donnée." alt="" coords="5,5,163,271"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -119,6 +119,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7e593761c88de15ccda73d260080254b" id="r_a7e593761c88de15ccda73d260080254b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a7e593761c88de15ccda73d260080254b">getBacklogItems</a> (int $gameId)</td></tr>
 <tr class="memdesc:a7e593761c88de15ccda73d260080254b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère les items du backlog.  <br /></td></tr>
 <tr class="separator:a7e593761c88de15ccda73d260080254b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ec096459a4204b1d0dffeced701df7d" id="r_a8ec096459a4204b1d0dffeced701df7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a8ec096459a4204b1d0dffeced701df7d">dropBacklogItems</a> (int $gameId)</td></tr>
+<tr class="memdesc:a8ec096459a4204b1d0dffeced701df7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprimer le Backlog d'une partie.  <br /></td></tr>
+<tr class="separator:a8ec096459a4204b1d0dffeced701df7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manipulation des données dans la base de donnée. </p>
@@ -286,6 +289,33 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int L'identifiant unique (ID) du joueur créé. </dd></dl>
+
+</div>
+</div>
+<a id="a8ec096459a4204b1d0dffeced701df7d" name="a8ec096459a4204b1d0dffeced701df7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ec096459a4204b1d0dffeced701df7d">&#9670;&#160;</a></span>dropBacklogItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::dropBacklogItems </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$gameId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprimer le Backlog d'une partie. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$gameId</td><td>L'ID de la partie. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
 </div>
 </div>

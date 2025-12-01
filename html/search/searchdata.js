@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "_acdglt",
   1: "dg",
   2: "dg",
-  3: "_acg",
+  3: "_acdg",
   4: "lt"
 };
 
