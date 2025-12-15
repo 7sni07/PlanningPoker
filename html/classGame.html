@@ -83,7 +83,7 @@ Collaboration diagram for Game:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGame__coll__graph.png" border="0" usemap="#aGame_coll__map" alt="Collaboration graph"/></div>
 <map name="aGame_coll__map" id="aGame_coll__map">
-<area shape="rect" title="Manipulation des données dans la base de donnée." alt="" coords="5,5,163,271"/>
+<area shape="rect" title="Manipulation des données dans la base de donnée." alt="" coords="5,5,157,271"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -122,6 +122,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8ec096459a4204b1d0dffeced701df7d" id="r_a8ec096459a4204b1d0dffeced701df7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a8ec096459a4204b1d0dffeced701df7d">dropBacklogItems</a> (int $gameId)</td></tr>
 <tr class="memdesc:a8ec096459a4204b1d0dffeced701df7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprimer le Backlog d'une partie.  <br /></td></tr>
 <tr class="separator:a8ec096459a4204b1d0dffeced701df7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae535cf043f8de469b36eb099087f6bb6" id="r_ae535cf043f8de469b36eb099087f6bb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ae535cf043f8de469b36eb099087f6bb6">updateGameStatus</a> (int $gameId, string $status)</td></tr>
+<tr class="memdesc:ae535cf043f8de469b36eb099087f6bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modification du statut d'une partie.  <br /></td></tr>
+<tr class="separator:ae535cf043f8de469b36eb099087f6bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5920f653d7d1e685533edc83c3a73e4a" id="r_a5920f653d7d1e685533edc83c3a73e4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a5920f653d7d1e685533edc83c3a73e4a">getNextPendingTask</a> (int $gameId)</td></tr>
+<tr class="memdesc:a5920f653d7d1e685533edc83c3a73e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère la prochaine tâche à estimer.  <br /></td></tr>
+<tr class="separator:a5920f653d7d1e685533edc83c3a73e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a089974d291b427854f414a7a74431a55" id="r_a089974d291b427854f414a7a74431a55"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a089974d291b427854f414a7a74431a55">submitVote</a> (int $backlogItemId, int $playerId, string $value, int $roundNumber)</td></tr>
+<tr class="memdesc:a089974d291b427854f414a7a74431a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enregistre les votes des joueurs dans la base de données.  <br /></td></tr>
+<tr class="separator:a089974d291b427854f414a7a74431a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41a9079ac34297164e443ca999cde54b" id="r_a41a9079ac34297164e443ca999cde54b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a41a9079ac34297164e443ca999cde54b">isRoundComplete</a> (int $gameId, int $itemId, int $roundNumber)</td></tr>
+<tr class="memdesc:a41a9079ac34297164e443ca999cde54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si TOUS les joueurs ont voté pour un tour donnée Coparaison entre le nombre de joueurs et le nombres des votes.  <br /></td></tr>
+<tr class="separator:a41a9079ac34297164e443ca999cde54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014cee07eeab9e8e423536369514c9e0" id="r_a014cee07eeab9e8e423536369514c9e0"><td class="memItemLeft" align="right" valign="top"><a id="a014cee07eeab9e8e423536369514c9e0" name="a014cee07eeab9e8e423536369514c9e0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>hasPlayerVoted</b> (int $itemId, int $playerId, int $roundNumber)</td></tr>
+<tr class="memdesc:a014cee07eeab9e8e423536369514c9e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si un joueur spécifique a déjà voté pour le tour en cours. <br /></td></tr>
+<tr class="separator:a014cee07eeab9e8e423536369514c9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4867078cb73bb1d3336a74e2d0b2bc73" id="r_a4867078cb73bb1d3336a74e2d0b2bc73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a4867078cb73bb1d3336a74e2d0b2bc73">getVotesForRound</a> (int $itemId, int $roundNumber)</td></tr>
+<tr class="memdesc:a4867078cb73bb1d3336a74e2d0b2bc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère la liste des votes pour un tour donné.  <br /></td></tr>
+<tr class="separator:a4867078cb73bb1d3336a74e2d0b2bc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dfc64bd9230b0700d14e88b45a7f570" id="r_a6dfc64bd9230b0700d14e88b45a7f570"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a6dfc64bd9230b0700d14e88b45a7f570">validateTaskDifficulty</a> (int $itemId, string $difficulty)</td></tr>
+<tr class="memdesc:a6dfc64bd9230b0700d14e88b45a7f570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enregistrement de la difficulté finale.  <br /></td></tr>
+<tr class="separator:a6dfc64bd9230b0700d14e88b45a7f570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaaca7771e4d1d1cc87aae7daeb5deef" id="r_abaaca7771e4d1d1cc87aae7daeb5deef"><td class="memItemLeft" align="right" valign="top"><a id="abaaca7771e4d1d1cc87aae7daeb5deef" name="abaaca7771e4d1d1cc87aae7daeb5deef"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>prepareNextRound</b> (int $itemId)</td></tr>
+<tr class="memdesc:abaaca7771e4d1d1cc87aae7daeb5deef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prépare la même tâche pour un nouveau tour de vote. retourn void. <br /></td></tr>
+<tr class="separator:abaaca7771e4d1d1cc87aae7daeb5deef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manipulation des données dans la base de donnée. </p>
@@ -374,6 +400,219 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array|null Retourne un tableau associatif contenant les données de la partie et une clé 'players' (tableau de joueurs), ou NULL si la partie n'existe pas. </dd></dl>
+
+</div>
+</div>
+<a id="a5920f653d7d1e685533edc83c3a73e4a" name="a5920f653d7d1e685533edc83c3a73e4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5920f653d7d1e685533edc83c3a73e4a">&#9670;&#160;</a></span>getNextPendingTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::getNextPendingTask </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$gameId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Récupère la prochaine tâche à estimer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$gameId</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>array|null La tâche ou null s'il n'y a plus rien à voter. </dd></dl>
+
+</div>
+</div>
+<a id="a4867078cb73bb1d3336a74e2d0b2bc73" name="a4867078cb73bb1d3336a74e2d0b2bc73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4867078cb73bb1d3336a74e2d0b2bc73">&#9670;&#160;</a></span>getVotesForRound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::getVotesForRound </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$itemId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$roundNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Récupère la liste des votes pour un tour donné. </p>
+<dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
+
+</div>
+</div>
+<a id="a41a9079ac34297164e443ca999cde54b" name="a41a9079ac34297164e443ca999cde54b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a9079ac34297164e443ca999cde54b">&#9670;&#160;</a></span>isRoundComplete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::isRoundComplete </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$gameId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$itemId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$roundNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie si TOUS les joueurs ont voté pour un tour donnée Coparaison entre le nombre de joueurs et le nombres des votes. </p>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
+<a id="a089974d291b427854f414a7a74431a55" name="a089974d291b427854f414a7a74431a55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a089974d291b427854f414a7a74431a55">&#9670;&#160;</a></span>submitVote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::submitVote </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$backlogItemId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$playerId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$roundNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enregistre les votes des joueurs dans la base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$gameId</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="ae535cf043f8de469b36eb099087f6bb6" name="ae535cf043f8de469b36eb099087f6bb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae535cf043f8de469b36eb099087f6bb6">&#9670;&#160;</a></span>updateGameStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::updateGameStatus </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$gameId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modification du statut d'une partie. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">int</td><td class="paramname">$gameId</td><td>L'ID de la partie. </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$status</td><td>Le nouveau statut. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="a6dfc64bd9230b0700d14e88b45a7f570" name="a6dfc64bd9230b0700d14e88b45a7f570"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dfc64bd9230b0700d14e88b45a7f570">&#9670;&#160;</a></span>validateTaskDifficulty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Game::validateTaskDifficulty </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>$itemId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>$difficulty</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enregistrement de la difficulté finale. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
