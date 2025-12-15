@@ -30,6 +30,7 @@ CREATE TABLE backlog_item (
     title VARCHAR(100) NOT NULL,
     description TEXT,
     estimated_difficulty FLOAT,
+    last_round_number INT NOT NULL,
     status VARCHAR(50)
 );
 
@@ -40,7 +41,6 @@ CREATE TABLE vote (
     item_id INT NOT NULL,
     value INT NOT NULL,
     round_number INT,
-    created_at DATETIME,
     FOREIGN KEY (player_id) REFERENCES players(player_id),
     FOREIGN KEY (item_id) REFERENCES backlog_items(item_id)
 );

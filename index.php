@@ -36,6 +36,30 @@ switch ($action) {
     case 'import_backlog':
         $gameController->importBacklog();
         break;
+
+    case 'start_game':
+        $gameController->startGame();
+        break;
+    
+    case 'play':
+        $gameController->play();
+        break;
+
+    case 'submit_vote':
+        $gameController->submitVote();
+        break;
+
+    case 'next_round':
+        $gameController->nextRound();
+        break;
+
+    case 'save_game':
+        $gameController->saveGame();
+        break;
+        
+    case 'api_check_status':
+        $gameController->apiCheckStatus();
+        break;
         
     default:
         $gameController->showMenu();

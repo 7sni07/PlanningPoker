@@ -131,13 +131,52 @@
 
             <hr>
 
-            <h3>Lancer le Vote</h3>
+            <h3>Lancer la partie</h3>
+
+            <?php if (isset($_GET['error'])): ?>
+                <div style="background-color: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                    <?php 
+                        if ($_GET['error'] == 'empty_backlog') {
+                            echo "⚠️ Erreur : Vous devez importer un backlog avant de commencer.";
+                        } elseif ($_GET['error'] == 'missing_players') {
+                            echo "⚠️ Erreur : Veuillez inviter les autres joueur.";
+                        }
+                    ?>
+                </div>
+            <?php endif; ?>
+
             <form action="index.php?action=start_game" method="POST">
-                <button type="submit" disabled>Démarrer la Session Planning Poker</button>
+                <button type="submit">Démarrer la Session Planning Poker</button>
             </form>
 
         </section>
     <?php endif; ?>
 
+
+
+
+
+    <script>
+        // Fonction qui interroge le serveur
+        function checkGameStatus() {
+            // On appelle l'URL de l'API créée à l'étape 1
+            fetch('index.php?action=api_check_status')
+                .then(response => response.json()) // On convertit la réponse en objet JS
+                .then(data => {
+                    console.log("Statut reçu :", data.status); // Pour le débogage (F12)
+
+                    // SI LE JEU A COMMENCÉ
+                    if (data.status === 'IN_GAME') {
+                        // Redirection automatique !
+                        window.location.href = 'index.php?action=play';
+                    }
+                    
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
+
+        // On lance cette vérification toutes les 2000 millisecondes (2 secondes)
+        setInterval(checkGameStatus, 2000);
+    </script>
 </body>
 </html>
