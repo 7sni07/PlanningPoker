@@ -87,13 +87,6 @@
 
         <?php else: ?>
 
-            <?php if (isset($_GET['result']) && $_GET['result'] === 'success'): ?>
-                <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; width: 100%; max-width: 600px; text-align: center; border: 1px solid #c3e6cb;">
-                    <h2>🎉 Unanimité !</h2>
-                    <p>La difficulté <strong><?php echo htmlspecialchars($_GET['val'] ?? ''); ?></strong> a été validée.</p>
-                </div>
-            <?php endif; ?>
-
             <section class="task-card">
                 <div class="round-badge">
                     Round #<?php echo htmlspecialchars($currentTask['last_round_number'] ?? 1); ?>
@@ -105,8 +98,28 @@
 
             <?php if (isset($showDebateMode) && $showDebateMode === true): ?>
                 
+                <?php 
+                    
+                    $titleColor = $isSuccess ? '#27ae60' : '#e67e22'; 
+                    
+                    if ($isSuccess) {
+                        if ($round_number === 1) {
+                            $titleText = '🎉 Unanimité !';
+                            $subText = 'Tout le monde est d\'accord.';
+                        } else {
+                            $titleText = '✅ Résultat du vote';
+                            $subText = 'Valeur retenue : <strong>' . $suggestedValue . '</strong>';
+                        }
+                    } else {
+                        $titleText = '⚡ Désaccord';
+                        $subText = ($round_number === 1) ? 'Round 1 : Pas d\'nanimité.' : 'La règle du jeu choisi ne dégage pas de résultat.';
+                    }
+                ?>
+
                 <div class="debate-box" style="text-align: center; width: 100%; max-width: 600px;">
-                    <h2 style="color: #e67e22;">⚡ Pas d'unanimité !</h2>
+                    
+                    <h2 style="color: <?php echo $titleColor; ?>;"><?php echo $titleText; ?></h2>
+                    <h2 style="color: <?php echo $titleColor; ?>;"><?php echo $subText; ?></h2>
                     <p>Voici les votes de l'équipe :</p>
 
                     <table style="width: 100%; margin: 20px 0; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -125,14 +138,27 @@
                     </table>
                     
                     <?php if ($is_host): ?>
-                        <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px;">
-                            <a href="index.php?action=next_round" class="btn-vote" style="text-decoration: none; display: inline-block;">
-                                🔄 Lancer le Round Suivant
-                            </a>
+                        <div style="margin-top: 20px; padding: 15px; background: <?php echo $isSuccess ? '#d4edda' : '#fff3cd'; ?>; border: 1px solid <?php echo $isSuccess ? '#c3e6cb' : '#ffeeba'; ?>; border-radius: 5px;">
+                            
+                            <?php if ($isSuccess): ?>
+                                <a href="index.php?action=validate_task" class="btn-vote" style="text-decoration: none; display: inline-block; background-color: #28a745;">
+                                    ✅ Valider et passer à la suite
+                                </a>
+                            <?php else: ?>
+                                <p style="color: #856404;">Débattez des différences puis relancez le vote.</p>
+                                <a href="index.php?action=next_round" class="btn-vote" style="text-decoration: none; display: inline-block; background-color: #ffc107; color: #333;">
+                                    🔄 Relancer le tour
+                                </a>
+                            <?php endif; ?>
+
                         </div>
                     <?php else: ?>
                         <div class="waiting-box">
-                            <p>En attente que l'hôte lance le prochain tour...</p>
+                            <?php if ($isSuccess): ?>
+                                <p style="color: #27ae60; font-weight: bold;">En attente de validation par l'hôte...</p>
+                            <?php else: ?>
+                                <p>Débat en cours... En attente de l'hôte.</p>
+                            <?php endif; ?>
                             <div class="loader"></div>
                             <script>setInterval(() => { location.reload(); }, 3000);</script>
                         </div>

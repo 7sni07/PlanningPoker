@@ -346,7 +346,7 @@ class GameController {
      * @brief Affiche la partie.
      * @return void
      */
-    public function play() {
+public function play() {
         
         if (session_status() === PHP_SESSION_NONE) session_start();
         
@@ -358,11 +358,15 @@ class GameController {
             header("Location: index.php?action=menu");
             exit();
         }
-        try{
 
+        try {
             $gameData = $this->gameModel->getGameInfo($game_id);
 
-            $isGamePaused = ($gameData['game_status'] === 'PAUSE');
+
+            if ($gameData['game_status'] === 'PAUSE') {
+                include 'views/play.php';
+                return;
+            }
         
             if ($gameData['game_status'] === 'LOBBY') {
                 header("Location: index.php?action=lobby&game_id=" . $game_id);
@@ -372,9 +376,11 @@ class GameController {
             $currentTask = $this->gameModel->getNextPendingTask($game_id);
 
             if (!$currentTask) {
-                // TODO: resultat des éstimations
-                echo "<h1>🏆 Bravo ! La partie est terminée.</h1>";
-                echo "<p>Toutes les tâches ont été estimées.</p>";
+                if ($gameData['game_status'] !== 'FINISHED') {
+                    $this->gameModel->updateGameStatus($game_id, 'FINISHED');
+                }
+                $finalBacklog = $this->gameModel->getBacklogItems($game_id);
+                include 'views/game_over.php';
                 exit();
             }
 
@@ -385,35 +391,49 @@ class GameController {
 
             $showDebateMode = false;
             $votesDetails = [];
+            
+            $isSuccess = false;
+            $suggestedValue = null;
 
             if ($isRoundFinished) {
-
+                
                 if ($currentTask['status'] !== 'VALIDATED') {
-
-                    $showDebateMode = true;
-
-                    $votesDetails = $this->gameModel->getVotesForRound($item_id, $round_number);
                     
+                    $showDebateMode = true;
+                    $votesDetails = $this->gameModel->getVotesForRound($item_id, $round_number);
                     $hasVoted = true; 
+
+                    
+                    $ruleId = (int)($gameData['rule_id'] ?? 1); 
+
+                    $voteResutlt = $this->calculateVoteResult($votesDetails, $ruleId, $round_number);
+
+                    if ($voteResutlt['status'] === 'PAUSE') {
+                        $this->gameModel->updateGameStatus($game_id, 'PAUSE');
+                        header("Location: index.php?action=play&result=coffee_break");
+                        exit();
+
+                    } elseif ($voteResutlt['status'] === 'SUCCESS') {
+                        $isSuccess = true;
+                        $suggestedValue = $voteResutlt['value'];
+                        
+                    } else {
+                        $isSuccess = false;
+                    }
                 }
             }
 
             $cards = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?', 'coffee'];
 
-            
             if (!$showDebateMode) {
-                    $hasVoted = $this->gameModel->hasPlayerVoted($item_id, $player_id, $round_number);
+                $hasVoted = $this->gameModel->hasPlayerVoted($item_id, $player_id, $round_number);
             }
-
-
 
             include 'views/play.php';
 
-
         } catch (Exception $e) {
-            die("Erreur lors du chargement de la partie : " . $e->getMessage());
+            die("Erreur play : " . $e->getMessage());
         }
-        
     }
 
     /**
@@ -452,7 +472,8 @@ class GameController {
 
                             if ($this->gameModel->isRoundComplete($game_id, $item_id, $round_number)) {
 
-                                $this->processVotingResult($game_id, $item_id, $round_number);
+                                $this->detectPauseGame($game_id, $item_id, $round_number);
+
 
                             } else {
                                 header("Location: index.php?action=play&status=waiting_others");
@@ -469,40 +490,151 @@ class GameController {
     }
 
     /**
-     * @brief Logique du mode du jeu "Pour l'instant mode strict".
-     * Cette fonction est appelée automatiquement dès que le dernier joueur a voté.
+     * @brief Analyse les votes selon la règle.
+     * @return array ['status' => 'SUCCESS'|'CONFLICT'|'PAUSE', 'value' => mixed]
+     */
+    private function calculateVoteResult(array $votes, int $ruleId, int $roundNumber): array {
+        
+        if (empty($votes)) return ['status' => 'CONFLICT', 'value' => null];
+
+        $values = array_column($votes, 'value');
+        
+        // les '?' seront un probleme pour les calculs mathématiques.
+        $numericValues = array_filter($values, function($v) {
+            return is_numeric($v);
+        });
+
+        // 2. GESTION SPÉCIALE : PAUSE CAFÉ (Prioritaire)
+        $uniqueValues = array_unique($values);
+        if (count($uniqueValues) === 1 && reset($uniqueValues) === 'coffee') {
+            return ['status' => 'PAUSE', 'value' => 'coffee'];
+        }
+
+        // 3. ROUND 1 : TOUJOURS UNANIMITÉ (Peu importe la règle)
+        if ($roundNumber === 1) {
+            if (count($uniqueValues) === 1) {
+                return ['status' => 'SUCCESS', 'value' => reset($uniqueValues)];
+            }
+            return ['status' => 'CONFLICT', 'value' => null];
+        }
+
+        
+        switch ($ruleId) {
+            case 1: // Strict (Unanimité)
+                if (count($uniqueValues) === 1) {
+                    return ['status' => 'SUCCESS', 'value' => reset($uniqueValues)];
+                }
+                break;
+
+            case 2: // Moyenne
+                if (count($numericValues) > 0) {
+                    $avg = array_sum($numericValues) / count($numericValues);
+                    $final = round($avg); 
+                    return ['status' => 'SUCCESS', 'value' => $final];
+                }
+                break;
+
+            case 3: // Médiane
+                if (count($numericValues) > 0) {
+                    sort($numericValues);
+                    $count = count($numericValues);
+                    $middle = floor(($count - 1) / 2);
+                    return ['status' => 'SUCCESS', 'value' => $numericValues[$middle]];
+                }
+                break;
+
+            case 4: // Majorité Absolue (> 50%)
+                $counts = array_count_values($values);
+                $totalVotes = count($values);
+                arsort($counts);
+                $topValue = array_key_first($counts);
+                $topCount = current($counts);
+
+                if ($topCount > ($totalVotes / 2)) {
+                    return ['status' => 'SUCCESS', 'value' => $topValue];
+                }
+                break; // Pas de majorité absolue = Conflit
+
+            case 5: // Majorité Relative (Le plus grand nombre de votes)
+                $counts = array_count_values($values);
+                arsort($counts);
+                $topValue = array_key_first($counts);
+                $topCount = current($counts);
+                
+                // Vérifier s'il y a une égalité de vote pour quelque choix
+                $keys = array_keys($counts, $topCount);
+                if (count($keys) === 1) {
+                    return ['status' => 'SUCCESS', 'value' => $topValue];
+                }
+                // Si égalité = Conflit
+                break;
+        }
+
+        // Par défaut : Conflit
+        return ['status' => 'CONFLICT', 'value' => null];
+    }
+
+    /**
+     * @brief Traite le résultat après le dernier vote.
+     * Sert à detecter si les joueurs veulent une pause
      * @return void
      */
-    private function processVotingResult(int $gameId, int $itemId, int $roundNumber) {
+    private function detectPauseGame(int $gameId, int $itemId, int $roundNumber) {
         
         $votes = $this->gameModel->getVotesForRound($itemId, $roundNumber);
         
-        $values = array_column($votes, 'value');
+        if (!empty($votes)) {
+            $values = array_column($votes, 'value');
+            $uniqueValues = array_unique($values);
 
-        $uniqueValues = array_unique($values);
-        $isUnanimous = (count($uniqueValues) === 1);
-
-        if ($isUnanimous) {
-            
-            $finalValue = $uniqueValues[0];
-
-            if ($finalValue === 'coffee') {
+            if (count($uniqueValues) === 1 && reset($uniqueValues) === 'coffee') {
                 
                 $this->gameModel->updateGameStatus($gameId, 'PAUSE');
 
                 header("Location: index.php?action=play&result=coffee_break");
                 exit();
             }
-            
-            $this->gameModel->validateTaskDifficulty($itemId, $finalValue);
-            
-            header("Location: index.php?action=play&result=success&val=" . $finalValue);
-
-        } else {
-            
-            header("Location: index.php?action=play&result=debate");
         }
+        header("Location: index.php?action=play");
         exit();
+    }
+
+
+    /**
+     * @brief Permet de valider la valeur de l'estimation.
+     * @return void
+     */
+    public function validateTask() {
+        if (session_status() === PHP_SESSION_NONE) session_start();
+        $game_id = (int)($_SESSION['game_id'] ?? -1);
+        $is_host = $_SESSION['is_host'] ?? false;
+
+        if (!$is_host || $game_id === -1) { 
+            header("Location: index.php"); 
+            exit(); 
+        }
+
+        $currentTask = $this->gameModel->getNextPendingTask($game_id);
+        
+        $round = $currentTask['last_round_number'];
+        $votes = $this->gameModel->getVotesForRound($currentTask['item_id'], $round);
+        $gameData = $this->gameModel->getGameInfo($game_id);
+        
+        if (!empty($votes)) {
+
+            $voteResult = $this->calculateVoteResult($votes, $gameData['rule_id'], $round);
+            
+            if ($voteResult['status'] === 'SUCCESS') {
+                $finalValue = $voteResult['value'];
+                
+                $this->gameModel->validateTaskDifficulty($currentTask['item_id'], $finalValue);
+                
+                header("Location: index.php?action=play&result=success&val=".$finalValue);
+                exit();
+            }
+        }
+
+        header("Location: index.php?action=play");
     }
 
     /**
@@ -578,13 +710,69 @@ class GameController {
         exit();
     }
 
+    /**
+     * @brief Relancer une partie mise en pause à travers le fichier JSON importé.
+     */
+    public function resumeGame() {
+        
+        if (session_status() === PHP_SESSION_NONE) session_start();
+
+        if (!isset($_FILES['save_file']) || $_FILES['save_file']['error'] !== UPLOAD_ERR_OK) {
+            header("Location: index.php?action=menu&error=upload_error");
+            exit();
+        }
+
+        $jsonContent = file_get_contents($_FILES['save_file']['tmp_name']);
+        $data = json_decode($jsonContent, true);
+
+        if (!$data || !isset($data['game_id'])) {
+            header("Location: index.php?action=menu&error=invalid_file");
+            exit();
+        }
+
+        if ($data['game_status'] === "FINISHED"){
+            header("Location: index.php?action=menu&info=game_finished");
+            exit();
+        }
+
+        $gameId = (int)$data['game_id'];
+        $inviteId = $data['invite_id'];
+
+        try {
+
+            $gameInfo = $this->gameModel->getGameInfo($gameId);
+
+            if (!$gameInfo) {
+                header("Location: index.php?action=menu&error=game_not_found_db");
+                exit();
+            }
+
+            $hostPlayer = $this->gameModel->getHostPlayer($gameId);
+
+            if (!$hostPlayer) {
+                die("Erreur critique : Impossible de trouver l'hôte de cette partie.");
+            }
+
+            $_SESSION['game_id'] = $gameId;
+            $_SESSION['player_id'] = $hostPlayer['player_id'];
+            $_SESSION['is_host'] = true;
+
+
+            header("Location: index.php?action=lobby&game_id=" . $gameId);
+            exit();
+
+        } catch (Exception $e) {
+            die("Erreur lors de la reprise : " . $e->getMessage());
+        }
+    }
+
 
     /**
      * @brief API : Renvoie le statut actuel de la partie en JSON.
-     * Appelée par le Javascript du lobby toutes les X secondes.
+     * Appelée par le Javascript du lobby toutes les 2 secondes.
      */
     public function apiCheckStatus() {
-        // Pas d'affichage HTML, on veut du JSON
+        
         header('Content-Type: application/json');
 
         if (session_status() === PHP_SESSION_NONE) session_start();
@@ -596,7 +784,7 @@ class GameController {
         }
 
         try {
-            // On récupère juste les infos (tu pourrais optimiser le Modèle pour ne récupérer QUE le status)
+            
             $gameData = $this->gameModel->getGameInfo($game_id);
             
             // On renvoie la réponse au format JSON
@@ -607,6 +795,6 @@ class GameController {
         } catch (Exception $e) {
             echo json_encode(['status' => 'ERROR']);
         }
-        exit; // Important : on arrête le script ici pour ne pas renvoyer le reste de la page
+        exit;
     }
 }

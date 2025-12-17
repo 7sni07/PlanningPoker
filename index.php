@@ -33,6 +33,10 @@ switch ($action) {
         $gameController->joinGame();
         break;
     
+    case 'resume_game':
+        $gameController->resumeGame();
+        break;
+    
     case 'import_backlog':
         $gameController->importBacklog();
         break;
@@ -47,6 +51,10 @@ switch ($action) {
 
     case 'submit_vote':
         $gameController->submitVote();
+        break;
+
+    case 'validate_task':
+        $gameController->validateTask();
         break;
 
     case 'next_round':

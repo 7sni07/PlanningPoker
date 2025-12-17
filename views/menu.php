@@ -59,10 +59,10 @@
 
         <hr>
 
-        <h2>Reprendre une session (Optionnel)</h2>
-        <form action="index.php?action=load_game" method="POST" enctype="multipart/form-data">
-            <label for="load_file">Fichier de sauvegarde (.json) :</label>
-            <input type="file" id="load_file" name="load_file" accept=".json">
+        <h2>Reprendre une partie en pause</h2>
+        <form action="index.php?action=resume_game" method="POST" enctype="multipart/form-data">
+            <label for="save_file">Fichier de sauvegarde (.json) :</label>
+            <input type="file" id="save_file" name="save_file" accept=".json" required>
             <button type="submit">Charger la Partie</button>
         </form>
     </main>

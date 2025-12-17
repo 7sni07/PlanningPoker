@@ -129,7 +129,7 @@ class Game {
         $sqlGame = "
             SELECT 
                 g.game_id, g.status AS game_status, g.started_at, g.ended_at, g.invite_id,g.nb_invited_players,
-                r.name AS rule_name, r.description AS rule_description
+                r.rule_id, r.name AS rule_name, r.description AS rule_description
             FROM 
                 game g JOIN rule r
             ON g.rule_id = r.rule_id
@@ -229,6 +229,19 @@ class Game {
 
         return $playerInGame;
 
+    }
+
+    /**
+     * @brief Récupère les infos du joueur Hôte d'une partie.
+     */
+    public function getHostPlayer(int $gameId): ?array {
+        $sqlGetHostPlayer = "SELECT * FROM player WHERE game_id = :game_id AND is_host = 1 LIMIT 1";
+        $stmtGetHostPlayer = $this->pdo->prepare($sqlGetHostPlayer);
+        $stmtGetHostPlayer->bindParam(':game_id', $gameId, PDO::PARAM_INT);
+        $stmtGetHostPlayer->execute();
+        
+        $res = $stmtGetHostPlayer->fetch();
+        return $res ?: null;
     }
 
 
