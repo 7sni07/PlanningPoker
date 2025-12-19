@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['submitvote_0',['submitVote',['../classGame.html#a089974d291b427854f414a7a74431a55',1,'Game']]]
+  ['nextround_0',['nextRound',['../classGameController.html#a834762749420ec1f9551b795101e5751',1,'GameController']]]
 ];

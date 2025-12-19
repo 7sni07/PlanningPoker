@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updategamestatus_0',['updateGameStatus',['../classGame.html#ae535cf043f8de469b36eb099087f6bb6',1,'Game']]]
+  ['resumegame_0',['resumeGame',['../classGameController.html#ac26a7c5add9e30c5672ed18823da5e27',1,'GameController']]]
 ];

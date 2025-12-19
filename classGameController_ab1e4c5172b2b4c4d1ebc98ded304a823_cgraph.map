@@ -1,0 +1,5 @@
+<map id="GameController\importBacklog" name="GameController\importBacklog">
+<area shape="rect" id="Node000001" title="Importe un backlog depuis un fichier JSON." alt="" coords="5,5,229,31"/>
+<area shape="rect" id="Node000002" href="$classGameController.html#ae8d68abeacb29bb10ec9b222aa5fe258" title="Affiche le salon d&#39;attente (Lobby). Cette page permet :" alt="" coords="277,5,480,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,15,263,15,263,21,229,21"/>
+</map>

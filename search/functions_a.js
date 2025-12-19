@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validatetaskdifficulty_0',['validateTaskDifficulty',['../classGame.html#a6dfc64bd9230b0700d14e88b45a7f570',1,'Game']]]
+  ['resumegame_0',['resumeGame',['../classGameController.html#ac26a7c5add9e30c5672ed18823da5e27',1,'GameController']]]
 ];
