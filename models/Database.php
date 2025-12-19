@@ -25,7 +25,7 @@ class Database {
     /**
      * @var string DB_NAME Nom de la base de données.
      */     
-    private const DB_NAME = 'planningPoker';
+    private const DB_NAME = 'planning_poker_hs';
 
     /**
      * @var string DB_USER Nom d'utilisateur de la base de données.

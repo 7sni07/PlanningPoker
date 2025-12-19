@@ -391,7 +391,7 @@ class Game {
         $stmtCountVotes->execute();
         $nbVotes = (int)$stmtCountVotes->fetchColumn();
 
-        return $nbVotes >= $nbPlayers;
+        return $nbVotes == $nbPlayers;
     }
 
     /**

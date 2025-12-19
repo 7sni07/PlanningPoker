@@ -1,0 +1,195 @@
+        /* Cette section définit le style de base du corps de la page */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Définition de la mise en page du conteneur principal */
+        .lobby-wrapper {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Cette section définit le style des boîtes de contenu (cartes blanches) */
+        .card-box {
+            background: white;
+            padding: 30px 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Définition de la typographie et des titres */
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        h1 { font-size: 26px; margin-bottom: 12px; }
+        
+        h2 { 
+            font-size: 20px; 
+            margin-bottom: 18px;
+            border-bottom: 2px solid #e1e1e1;
+            padding-bottom: 8px;
+        }
+        
+        h3 { font-size: 17px; margin-bottom: 15px; color: #34495e; }
+
+        /* Cette section définit le style des paragraphes */
+        p { font-size: 14px; color: #666; line-height: 1.5; }
+
+        /* Définition du bloc d'information dans l'en-tête */
+        .header-meta {
+            background: #e9f5ff;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            border-radius: 8px;
+        }
+
+        /* Cette section définit la zone d'affichage du code d'invitation */
+        .invite-code-box {
+            background: #fff;
+            border: 2px dashed #bdc3c7;
+            padding: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            color: #3498db;
+            border-radius: 8px;
+        }
+
+        /* Définition de la structure de la liste des joueurs */
+        .player-list-ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        /* Cette section définit l'apparence de chaque joueur dans la liste */
+        .player-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .player-item:hover { background: #fafafa; }
+        .player-item:last-child { border-bottom: 0; }
+
+        /* Définition des badges pour les rôles (Hôte, Moi, Invité) */
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge-host { background: #f1c40f; color: #fff; }
+        .badge-you { background: #2ecc71; color: white; }
+        .badge-guest { background: #ecf0f1; color: #7f8c8d; }
+
+        /* Cette section définit les étiquettes des formulaires */
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        /* Définition des champs de saisie (texte et fichier) */
+        input[type="text"], input[type="file"] {
+            padding: 10px;
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #bdc3c7;
+            margin-bottom: 10px;
+        }
+
+        /* Styles Tableau Backlog */
+        .backlog-table { 
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px; 
+        }
+        .backlog-table th, .backlog-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .backlog-table th { background-color: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        /* Badges de statut */
+        .badge {
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .badge-pending {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        .badge-validated {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .badge-current { 
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        /* Cette section définit le style des boutons principaux */
+        .btn-main {
+            padding: 12px;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-main:hover { background: #2a80b9; }
+        .btn-main:disabled { background: #bdc3c7; cursor: not-allowed; }
+
+        /* Définition de la variante pour les petits boutons */
+        .btn-small { padding: 8px 12px; }
+
+        /* Cette section définit le tableau du backlog (tâches) */
+        .backlog-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 18px;
+        }
+
+        .backlog-table th {
+            background: #ecf0f1;
+            padding: 10px;
+            border-bottom: 2px solid #bdc3c7;
+        }
+        .backlog-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Définition de la structure à deux colonnes */
+        .split-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        .col-left { flex: 1; min-width: 280px; }
+        .col-right { flex: 2; min-width: 300px; }

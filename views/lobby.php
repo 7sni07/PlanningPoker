@@ -1,194 +1,200 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Lobby - Partie #<?php echo ($gameData['game_id']); ?> (Planning Poker)</title>
-    <style>
-        /* Styles de base pour la lisibilité */
-        body { font-family: 'Segoe UI', sans-serif; margin: 30px; line-height: 1.6; background-color: #f4f6f8; color: #333; }
-        .lobby-container { display: flex; gap: 40px; margin-top: 20px; }
-        .game-info, .player-list { background: white; border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .game-info { flex: 1; }
-        .player-list { flex: 1; }
-        .player-list ul { list-style-type: none; padding-left: 0; }
-        .player-list li { margin-bottom: 8px; padding: 8px; border-bottom: 1px solid #eee; }
-        
-        .host-actions { margin-top: 30px; border: 2px solid #007bff; padding: 25px; border-radius: 8px; background: white; }
-        .game-id-display { font-size: 2em; color: #007bff; font-weight: bold; margin-top: 5px; background: #e6f7ff; padding: 10px; display: inline-block; border-radius: 5px; }
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        /* Nouveaux styles pour le tableau */
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #f8f9fa; font-weight: 600; color: #555; }
-        
-        /* Badges de statut */
-        .badge { padding: 5px 10px; border-radius: 12px; font-size: 0.85em; font-weight: bold; text-transform: uppercase; }
-        .badge-pending { background-color: #e9ecef; color: #495057; }
-        .badge-validated { background-color: #d4edda; color: #155724; }
-        .badge-current { background-color: #cce5ff; color: #004085; }
-        
-        button { cursor: pointer; padding: 10px 20px; border-radius: 5px; border: none; font-size: 1em; }
-        button[type="submit"] { background-color: #28a745; color: white; transition: background 0.3s; }
-        button[type="submit"]:hover { background-color: #218838; }
-    </style>
+    <link rel='stylesheet' type='text/css' href='./css/LobbyStyle.css'>
+
+    <title>Lobby – Partie #<?php echo $gameData['game_id']; ?> (Planning Poker)</title>
+    
+
 </head>
+
 <body>
 
-    <header>
-        <h1>🃏 Salon d'Attente de la Partie</h1>
-        <p>
-            Règles de validation : <strong><?php echo htmlspecialchars($gameData['rule_name']); ?></strong> 
-            (Statut actuel : <?php echo htmlspecialchars($gameData['game_status']); ?>)
-        </p>
-    </header>
+<div class="lobby-wrapper">
 
-    <div class="lobby-container">
+    <div class="card-box">
+        <h1>🃏 Salon d'attente</h1>
 
-        <section class="game-info">
-            <h2>🔗 ID de la Partie</h2>
-            <?php if ($is_host): ?>
-            <p>Donnez cet ID aux autres joueurs pour qu'ils rejoignent :</p>
-             <?php endif; ?>
-            <div class="game-id-display">
-                <?php echo htmlspecialchars($gameData['invite_id']); ?>
-            </div>
-        </section>
-
-        <section class="player-list">
-            <h2>Participants :</h2>
-            <ul>
-                <?php foreach ($gameData['players'] as $player): ?>
-                    <li>
-                        <?php echo htmlspecialchars($player['pseudo']); ?>
-                        <?php if ($player['player_id'] === $player_id): ?>
-                            <strong>(Vous)</strong>
-                        <?php endif; ?>
-
-                        <?php if ($player['is_host']): ?>
-                            👑 (Hôte)
-                        <?php else:?>
-                            👤 (Invité)
-                        <?php endif; ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            
-            <?php if(count($gameData['players']) - ($gameData['nb_invited_players'] + 1) != 0):?>
-                <hr>
-                <p><strong>Inviter des participants manquants :</strong></p>
-                <form action="index.php?action=invite_player" method="POST">
-                    <?php for($i=0; $i<$gameData['nb_invited_players']; $i++): ?>
-                        <div style="margin-bottom: 5px;">
-                            <label for="pseudo_<?= $i ?>">Pseudo :</label>
-                            <input type="text" id="pseudo_<?= $i ?>" name="pseudo[]" required>
-                            <input type=hidden name="gameID" value="<?php echo $gameData['game_id']; ?>" >
-                        </div>
-                    <?php endfor; ?>
-                    <button type="submit" style="background-color: #17a2b8; margin-top: 10px;">Inviter</button>
-                </form>
-            <?php endif; ?>
-        </section>
-
+        <div class="header-meta">
+            <strong>Règles :</strong> <?= $gameData['rule_name']; ?>
+            <span style="margin: 0 10px;">|</span>
+            <strong>Statut :</strong> <?= $gameData['game_status']; ?>
+        </div>
     </div>
 
-    <?php if ($is_host): ?>
-        <section class="host-actions">
-            <h2>⚙️ Configuration du Jeu (Hôte Uniquement)</h2>
+    <div class="split-layout">
 
-            <?php if (empty($gameData['backlog_items'])): ?>
-                
-                <h3>Importer le Backlog (User Stories)</h3>
-                <p>Chargez le fichier JSON contenant la liste des fonctionnalités à estimer.</p>
-                
-                <form action="index.php?action=import_backlog" method="POST" enctype="multipart/form-data">
-                    <label for="backlog_file">Fichier JSON :</label>
-                    <input type="file" id="backlog_file" name="backlog_file" accept=".json" required>
-                    <br><br>
-                    <button type="submit" style="background-color: #007bff;">Charger le Backlog</button>
-                </form>
+        <!-- Colonne gauche : infos joueurs -->
+        <div class="col-left">
 
-            <?php else: ?>
-                
-                <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">
-                    ✅ <strong>Backlog chargé !</strong> Le fichier contient <?php echo count($gameData['backlog_items']); ?> tâches.
+            <div class="card-box" style="margin-bottom: 22px;">
+                <h2>🔗 Identifiant de la partie</h2>
+
+                <?php if ($is_host): ?>
+                    <p>Partagez ce code avec l’équipe :</p>
+                <?php endif; ?>
+
+                <div class="invite-code-box">
+                    <?php echo $gameData['invite_id']; ?>
                 </div>
+            </div>
 
+            <div class="card-box">
+                <h2>👥 Participants</h2>
+
+                <ul class="player-list-ul">
+                    <?php foreach ($gameData['players'] as $p): ?>
+                        <li class="player-item">
+                            <span><?= htmlspecialchars($p['pseudo']); ?></span>
+                            <div>
+                                <?php if ($p['is_host']): ?>
+                                    <span class="badge badge-host">Hôte</span>
+                                <?php endif; ?>
+
+                                <?php if ($p['player_id'] === $player_id): ?>
+                                    <span class="badge badge-you">Moi</span>
+                                <?php endif; ?>
+
+                                <?php if (!$p['is_host'] && $p['player_id'] !== $player_id): ?>
+                                    <span class="badge badge-guest">Invité</span>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+
+                <?php 
+                    if ((count($gameData['players']) - ($gameData['nb_invited_players'] + 1)) != 0): 
+                ?>
+                <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 12px;">
+                    
+                    <h3>Inviter d'autres joueurs</h3>
+                    <form action="index.php?action=invite_player" method="POST">
+                        
+                        <?php for ($i = 0; $i < $gameData['nb_invited_players']; $i++): ?>
+                            <div style="margin-bottom: 10px;">
+                                <label for="pseudo_<?= $i ?>">Pseudo invité #<?= $i+1 ?></label>
+                                <input type="text" id="pseudo_<?= $i ?>" 
+                                       name="pseudo[]" placeholder="Nom du joueur..." required>
+                                <input type="hidden" name="gameID" 
+                                       value="<?= $gameData['game_id']; ?>">
+                            </div>
+                        <?php endfor; ?>
+
+                        <button class="btn-main btn-small">Envoyer les invitations</button>
+                    </form>
+                </div>
+                <?php endif; ?>
+
+            </div>
+        </div>
+
+
+        <!-- Colonne droite : actions hôte -->
+        <?php if ($is_host): ?>
+        <div class="col-right">
+
+            <div class="card-box" style="border: 2px solid #3498db;">
+                <h2 style="color: #3498db;">⚙️ Tableau de bord de l’hôte</h2>
+            <?php if ($gameData['game_status'] != "PAUSE"): ?>
+                <div style="margin-bottom: 28px;">
+                    <h3>📂 Importer le Backlog</h3>
+                    <p>Ajoutez un fichier JSON contenant vos user stories.</p>
+
+                    <form action="index.php?action=import_backlog" method="POST"
+                          enctype="multipart/form-data" 
+                          style="background: #fafafa; padding: 14px; border-radius: 8px;">
+                        
+                        <label for="backlog_file">Fichier JSON :</label>
+                        <input type="file" id="backlog_file" name="backlog_file" accept=".json" required>
+
+                        <button class="btn-main btn-small">Charger le fichier</button>
+                    </form>
+                </div>
             <?php endif; ?>
+                <div style="margin-bottom: 28px;">
+                    <h3>📋 Aperçu des tâches</h3>
 
-            <hr>
+                    <?php if (!empty($gameData['backlog_items'])): ?>
 
-            <h3>Aperçu des User Stories</h3>
-            
-            <?php if (!empty($gameData['backlog_items'])): ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Titre</th>
-                            <th>Description</th>
-                            <th>Statut</th> <th>Difficulté</th> </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($gameData['backlog_items'] as $item): ?>
+                        <div style="overflow-x: auto;">
+                            <table class="backlog-table">
+                        <thead>
                             <tr>
-                                <td><?php echo htmlspecialchars($item['title']); ?></td>
-                                <td><?php echo htmlspecialchars($item['description']); ?></td>
-                                
-                                <td>
-                                    <?php 
-                                        $statusClass = 'badge-pending';
-                                        $statusText = 'À faire';
-
-                                        if ($item['status'] === 'VALIDATED') {
-                                            $statusClass = 'badge-validated';
-                                            $statusText = 'Terminé';
-                                        } elseif ($item['status'] === 'EN COURS') { // Ou le statut actuel
-                                            $statusClass = 'badge-current';
-                                            $statusText = 'En cours';
-                                        }
-                                    ?>
-                                    <span class="badge <?php echo $statusClass; ?>">
-                                        <?php echo $statusText; ?>
-                                    </span>
-                                </td>
-
-                                <td style="font-weight: bold; text-align: center;">
-                                    <?php 
-                                        // Si null, on affiche un tiret, sinon la valeur
-                                        echo ($item['estimated_difficulty'] !== null) ? htmlspecialchars($item['estimated_difficulty']) : '-'; 
-                                    ?>
-                                </td>
+                                <th style="width: 30%;">Titre</th>
+                                <th style="width: 40%;">Description</th>
+                                <th style="width: 15%;">Statut</th>
+                                <th style="width: 15%; text-align: center;">Difficulté</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php else: ?>
-                <p style="font-style: italic; color: #666;">Aucune tâche importée pour le moment.</p>
-            <?php endif; ?>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($gameData['backlog_items'] as $item): ?>
+                                <tr>
+                                    <td><strong><?php echo htmlspecialchars($item['title']); ?></strong></td>
+                                    <td style="color: #666; font-size: 0.9em;"><?php echo htmlspecialchars($item['description']); ?></td>
+                                    
+                                    <td>
+                                        <?php 
+                                            $statusClass = 'badge-pending';
+                                            $statusText = 'À faire';
 
-            <hr>
+                                            if ($item['status'] === 'VALIDATED') {
+                                                $statusClass = 'badge-validated';
+                                                $statusText = 'Terminé';
+                                            } elseif ($item['status'] === 'EN COURS') { 
+                                                $statusClass = 'badge-current';
+                                                $statusText = 'En cours';
+                                            }
+                                        ?>
+                                        <span class="badge <?php echo $statusClass; ?>">
+                                            <?php echo $statusText; ?>
+                                        </span>
+                                    </td>
 
-            <h3>Lancer la partie</h3>
+                                    <td style="font-weight: bold; text-align: center;">
+                                        <?php 
+                                            echo ($item['estimated_difficulty'] !== null) 
+                                                ? htmlspecialchars($item['estimated_difficulty']) 
+                                                : '<span style="color:#ccc;">-</span>'; 
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                        </div>
 
-            <?php if (isset($_GET['error'])): ?>
-                <div style="background-color: #ffcccc; color: red; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
-                    <?php 
-                        if ($_GET['error'] == 'empty_backlog') {
-                            echo "⚠️ Erreur : Vous devez importer un backlog avant de commencer.";
-                        } elseif ($_GET['error'] == 'missing_players') {
-                            echo "⚠️ Erreur : Veuillez inviter les autres joueurs.";
-                        }
-                    ?>
+                    <?php else: ?>
+
+                        <div style="text-align:center; padding:20px; background:#fafafa; border-radius:6px;">
+                            Aucune tâche importée pour le moment.
+                        </div>
+
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
 
-            <form action="index.php?action=start_game" method="POST">
-                <button type="submit" style="width: 100%; padding: 15px; font-size: 1.2em;">
-                    🚀 Démarrer la Session Planning Poker
-                </button>
-            </form>
+                <div>
+                    <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
+                    <h3>🚀 Lancer la session</h3>
+                    <form action="index.php?action=start_game" method="POST">
+                        <button class="btn-main">Démarrer le Planning Poker</button>
+                    </form>
+                </div>
 
-        </section>
-    <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+    </div>
+</div>
+
+
+
+
+
 
 
     <script>

@@ -3,53 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>En Jeu - Partie #<?php echo htmlspecialchars($gameData['game_id']); ?></title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; background-color: #f0f2f5; }
-        
-        /* Sidebar gauche (Joueurs) */
-        .sidebar { width: 250px; background: #2c3e50; color: white; padding: 20px; display: flex; flex-direction: column; }
-        .sidebar h2 { font-size: 1.2em; border-bottom: 1px solid #34495e; padding-bottom: 10px; }
-        .player-item { padding: 10px; border-bottom: 1px solid #34495e; }
-        .player-item.is-me { background-color: #34495e; font-weight: bold; border-left: 4px solid #3498db; }
-        
-        /* Contenu principal */
-        .main-content { flex: 1; padding: 30px; display: flex; flex-direction: column; align-items: center; overflow-y: auto; }
-        
-        /* --- STYLES STANDARDS (Jeu) --- */
-        .task-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 600px; width: 100%; margin-bottom: 30px; border-top: 5px solid #007bff; }
-        .task-title { font-size: 1.8em; margin: 0 0 10px 0; color: #333; }
-        .task-desc { color: #666; font-size: 1.1em; }
-        .timer-box { font-size: 2em; font-weight: bold; color: #e74c3c; margin-bottom: 20px; border: 2px solid #e74c3c; padding: 10px 20px; border-radius: 50px; }
-        .cards-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-        .round-badge { background-color: #f1c40f; color: #2c3e50; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Cartes & Votes */
-        .card-option { display: none; }
-        .card-label { display: flex; justify-content: center; align-items: center; width: 60px; height: 90px; background: white; border: 2px solid #ccc; border-radius: 8px; font-size: 1.5em; font-weight: bold; color: #333; cursor: pointer; transition: transform 0.2s, border-color 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .card-label:hover { transform: translateY(-5px); border-color: #3498db; }
-        .card-option:checked + .card-label { background-color: #3498db; color: white; border-color: #3498db; transform: translateY(-10px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4); }
+    
+    <link rel='stylesheet' type='text/css' href='./css/PlayStyle.css'>
 
-        /* --- STYLES PAUSE CAFÉ --- */
-        .coffee-break-container {
-            text-align: center; margin-top: 50px; 
-            background: white; padding: 40px; border-radius: 15px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 500px;
-        }
-        .coffee-icon { font-size: 80px; margin-bottom: 20px; display: block; animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-
-        .btn-action { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; transition: background 0.3s; }
-        .btn-download { background-color: #3498db; color: white; }
-        .btn-download:hover { background-color: #2980b9; }
-        .btn-menu { background-color: #e74c3c; color: white; }
-        .btn-menu:hover { background-color: #c0392b; }
-
-        .btn-vote { margin-top: 30px; padding: 15px 40px; font-size: 1.2em; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .waiting-box, .debate-box { text-align: center; animation: fadeIn 0.5s; }
-        .loader { border: 8px solid #f3f3f3; border-top: 8px solid #3498db; border-radius: 50%; width: 60px; height: 60px; animation: spin 2s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    </style>
 </head>
 <body>
 
@@ -184,10 +140,19 @@
                     
                     <div class="cards-container">
                         <?php foreach ($cards as $val): ?>
+        
+                            <?php 
+                                $imageName = ($val === '?') ? 'interro' : $val; 
+                                
+                                $imagePath = "public/img/cards/" . $imageName . ".svg";
+                            ?>
+
                             <input type="radio" name="vote_value" id="card_<?php echo $val; ?>" value="<?php echo $val; ?>" class="card-option" required>
+                            
                             <label for="card_<?php echo $val; ?>" class="card-label">
-                                <?php echo ($val === 'coffee') ? '☕' : $val; ?>
+                                <img src="<?php echo $imagePath; ?>" alt="Carte <?php echo $val; ?>">
                             </label>
+
                         <?php endforeach; ?>
                     </div>
 
