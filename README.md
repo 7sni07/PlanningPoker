@@ -1,6 +1,6 @@
 # Planning Poker
 
-Bienvenue sur le projet **Planning Poker**. Pour tester l'application, veuillez suivre les instruction suivantes :
+Bienvenue sur le projet **Planning Poker**. Pour tester l'application, veuillez suivre les instructions suivantes :
 
 ## 🛠 Prérequis
 
