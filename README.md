@@ -23,4 +23,12 @@ Accédez au dossier d'installation de votre serveur :
 Ouvrez votre terminal (ou Git Bash) dans ce dossier et exécutez la commande suivante :
 
 ```bash
-git clone [https://github.com/7sni07/PlanningPoker.git](https://github.com/7sni07/PlanningPoker.git)
+git clone https://github.com/7sni07/PlanningPoker.git
+```
+### 3. Créer la base de données
+
+Ouvrez votre navigateur et allez sur : `http://localhost/phpmyadmin`  
+
+Créer la base de données avec le nom `planning_poker_hs`
+
+Importer le script SQL `BDD.sql` pour alimenter la base de donnée.
