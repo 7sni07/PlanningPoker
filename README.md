@@ -1,6 +1,6 @@
 # Planning Poker
 
-Bienvenue sur le projet **Planning Poker**. Ce guide vous aidera à installer et configurer l'environnement de développement localement.
+Bienvenue sur le projet **Planning Poker**. Pour tester l'application, veuillez suivre les instruction suivantes :
 
 ## 🛠 Prérequis
 
